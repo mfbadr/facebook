@@ -46,6 +46,7 @@ describe('User', function(){
             expect(user.facebook).to.equal('facebook.com/bob');
             expect(user.twitter).to.equal('@bob');
             expect(user.phone).to.equal('615-555-5555');
+            expect(user.isVisible).to.equal(true);
             done();
           });
         });

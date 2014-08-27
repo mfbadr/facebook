@@ -25,17 +25,11 @@ block content
           input.form-control#phone(type='tel', name='phone', value=user.phone)
         .radio
           label
-            if(user.visible == 'public')
-              input#public(type='radio', name='visible', value='public', checked)
-            else
-              input#public(type='radio', name='visible', value='public')
+            input#public(type='radio', name='visible', value='public', checked=user.isVisible)
             span Public
         .radio
           label
-            if(user.visible == 'private')
-              input#public(type='radio', name='visible', value='private', checked)
-            else
-              input#public(type='radio', name='visible', value='private')
+            input#public(type='radio', name='visible', value='private', checked=!user.isVisible)
             span Private
         button.btn.btn-primary(type='submit') Submit
     .col-xs-6
