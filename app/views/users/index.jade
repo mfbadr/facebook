@@ -2,9 +2,8 @@ extends ../shared/template
 block content
   .row
     .col-xs-6
-      h2 Users with public profiles
-      each otherUser in users
-        if otherUser.isVisible == true
-          h4= otherUser.email
+      h2 Users with public profiles:
+      each user in users
+        h4= user.email
 block scripts
 
