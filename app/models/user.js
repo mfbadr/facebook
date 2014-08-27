@@ -44,5 +44,9 @@ User.update = function(body, user, cb){
   User.collection.save(user, cb);
 };
 
+User.all = function(cb){
+  User.collection.find().toArray(cb);
+};
+
 module.exports = User;
 

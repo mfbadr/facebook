@@ -18,6 +18,7 @@ describe('User', function(){
 
   beforeEach(function(done){
     cp.execFile(__dirname + '/../scripts/clean-db.sh', [db], {cwd:__dirname + '/../scripts'}, function(err, stdout, stderr){
+      console.log(stdout, stderr);
       done();
     });
   });
@@ -50,6 +51,14 @@ describe('User', function(){
             done();
           });
         });
+      });
+    });
+  });
+  describe('.all', function(){
+    it('should return all users', function(done){
+      User.all(function(err, users){
+        expect(users).to.have.length(3);
+        done();
       });
     });
   });

@@ -69,5 +69,19 @@ describe('users', function(){
       });
     });
   });
+  describe('get /users', function(){
+    it('should show all public profile', function(done){
+      request(app)
+      .get('/users')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('bob');
+        expect(res.text).to.include('bill');
+        expect(res.text).to.not.include('sue');
+        done();
+      });
+    });
+  });
 });
 
