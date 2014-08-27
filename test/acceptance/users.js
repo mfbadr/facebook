@@ -43,5 +43,17 @@ describe('users', function(){
       });
     });
   });
+  describe('put /profile', function(){
+    it('should update the profile ', function(done){
+      request(app)
+      .post('/profile')
+      .send('_method=put&email=bob%40email.com&photo=url.com%2Fimage.jpeg&tagline=i%27m+awesome&facebook=facebook.com%2Fbob&twitter=%40bob&phone=615-555-5555&visible=public')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        done();
+      });
+    });
+  });
 });
 

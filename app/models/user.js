@@ -32,5 +32,16 @@ User.authenticate = function(o, cb){
   });
 };
 
+User.update = function(body, user, cb){
+  user.email = body.email;
+  user.photo = body.photo;
+  user.tagline = body.tagline;
+  user.facebook = body.facebook;
+  user.twitter = body.twitter;
+  user.phone = body.phone;
+  user.visible = body.visible;
+  User.collection.save(user, cb);
+};
+
 module.exports = User;
 
