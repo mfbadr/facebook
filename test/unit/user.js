@@ -62,5 +62,13 @@ describe('User', function(){
       });
     });
   });
+  describe('.find', function(){
+    it('should find by query', function(done){
+      User.find({isVisible:true}, function(err, users){
+        expect(users).to.have.length(2);
+        done();
+      });
+    });
+  });
 });
 

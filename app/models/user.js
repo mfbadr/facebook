@@ -48,5 +48,10 @@ User.all = function(cb){
   User.collection.find().toArray(cb);
 };
 
+User.find = function(query, cb){
+  User.collection.find(query).toArray(cb);
+};
+
+
 module.exports = User;
 
