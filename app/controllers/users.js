@@ -56,17 +56,17 @@ exports.show = function(req, res){
 };
 
 exports.index = function(req, res){
-  User.collection.find({isVisible:true}).toArray(function(err,users){
+  User.find({isVisible:true}, function(err, users){
     res.render('users/index', {users:users});
   });
 };
 
 exports.viewUser = function(req, res){
-  User.collection.findOne({email:req.params.email}, function(err, person){
-    if(!person.isVisible){
-      res.redirect('/users');
+  User.find({email:req.params.email}, function(err, person){
+    if(person[0].isVisible){
+      res.render('users/viewUser', {person:person[0]});
     }else{
-      res.render('users/viewUser', {person:person});
+      res.redirect('/users');
     }
   });
 };
