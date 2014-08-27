@@ -12,7 +12,24 @@ block content
       h4: a(href='http://#{person.facebook}', target='_blank') #{person.facebook}
       h2 Visibility
       h4= person.isVisible ? 'Public' : 'Private'
-      a.btn.btn-primary(href='/profile/edit') Edit Profile
+      h2 Send a Message
+      form(role='form', method='post', action='/message/#{person._id}')
+        .radio
+          label
+            input#public(type='radio', name='mtype', value='text', checked)
+            span Text
+        .radio
+          label
+            input#public(type='radio', name='mtype', value='email')
+            span Email
+        .radio
+          label
+            input#public(type='radio', name='mtype', value='internal')
+            span Internal
+        .form-group
+          label(for='themessage')
+          textarea.form-control#themessage(name='message', placeholder='Your message here...')
+        button.btn.btn-success(type='submit') Send Message
     .col-xs-6
       img#profilepic.img-circle(src=person.photo)
 

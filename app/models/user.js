@@ -1,6 +1,7 @@
 'use strict';
 
 var bcrypt = require('bcrypt'),
+    _      = require('lodash'),
     Mongo  = require('mongodb');
 
 function User(){
@@ -9,10 +10,11 @@ function User(){
 Object.defineProperty(User, 'collection', {
   get: function(){return global.mongodb.collection('users');}
 });
-
 User.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
-  User.collection.findOne({_id:_id}, cb);
+  User.collection.findOne({_id:_id}, function(err, obj){
+    cb(err, _.create(User.prototype, obj));
+  });
 };
 
 User.register = function(o, cb){
@@ -52,6 +54,31 @@ User.find = function(query, cb){
   User.collection.find(query).toArray(cb);
 };
 
+User.prototype.send = function(receiver, obj, cb){
+  switch(obj.mtype){
+    case 'text':
+      sendText(receiver.phone, obj.message, cb);
+      break;
+    case 'email':
+      break;
+    case 'internal':
+      break;
+  }
 
+};
 module.exports = User;
 
+function sendText(to, body, cb){
+// Twilio Credentials
+  var accountSid = 'ACfd20bd0f31adbed6b145541d420e7081',
+    authToken  = process.env.TWILIO,
+    client = require('twilio')(accountSid, authToken);
+
+//require the Twilio module and create a REST client
+
+  client.messages.create({
+    to: to,
+    from: '+16156033945',
+    body: body
+  },cb);
+}

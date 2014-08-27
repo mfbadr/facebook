@@ -100,7 +100,20 @@ describe('users', function(){
       .set('cookie', cookie)
       .end(function(err, res){
         expect(res.status).to.equal(302);
-        expect(res.headers.location).to.equal('/users'); //where are we redirecting to?
+        expect(res.headers.location).to.equal('/users');
+        done();
+      });
+    });
+  });
+  describe('post /message/:id', function(){
+    it('should send a user a message', function(done){
+      request(app)
+      .post('/message/000000000000000000000003')
+      .set('cookie', cookie)
+      .send('mtype=text&message=hello')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/bill@aol.com');
         done();
       });
     });

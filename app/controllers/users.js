@@ -70,3 +70,12 @@ exports.viewUser = function(req, res){
     }
   });
 };
+
+exports.message = function(req, res){
+  User.findById(req.params.userId, function(err, receiver){
+    res.locals.user.send(receiver, req.body, function(){
+      res.redirect('/users/' + receiver.email);
+    });
+  });
+};
+
