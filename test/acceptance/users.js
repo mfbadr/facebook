@@ -2,7 +2,7 @@
 
 'use strict';
 
-process.env.DB   = 'template-test';
+process.env.DB   = 'facebook-test';
 
 var expect  = require('chai').expect,
     cp      = require('child_process'),
@@ -28,13 +28,17 @@ describe('users', function(){
     });
   });
 
-  describe('get /register', function(){
-    it('should show the register page', function(done){
+  describe('get /profile/edit', function(){
+    it('should show the edit profile page', function(done){
       request(app)
-      .get('/register')
+      .get('/profile/edit')
+      .set('cookie', cookie)
       .end(function(err, res){
         expect(res.status).to.equal(200);
-        expect(res.text).to.include('Register');
+        expect(res.text).to.include('bob@aol.com');
+        expect(res.text).to.include('Email');
+        expect(res.text).to.include('Phone');
+        expect(res.text).to.include('Public');
         done();
       });
     });

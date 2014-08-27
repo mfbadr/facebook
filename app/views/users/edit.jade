@@ -1,0 +1,38 @@
+extends ../shared/template
+block content
+  h2 Register
+  .row
+    .col-xs-6
+      form(role='form', method='post', action='/profile')
+        input(type='hidden', name='_method', value='put')
+        .form-group
+          label(for='email') Email
+          input.form-control#email(type='email', name='email', autofocus=true, value=user.email)
+        .form-group
+          label(for='photo') Photo URL
+          input.form-control#photo(type='text', name='photo')
+        .form-group
+          label(for='tagline') Tagline
+          input.form-control#tagline(type='text', name='tagline')
+        .form-group
+          label(for='facebook') Facebook
+          input.form-control#facebook(type='text', name='facebook')
+        .form-group
+          label(for='twitter') Twitter
+          input.form-control#twitter(type='text', name='twitter')
+        .form-group
+          label(for='phone') Phone
+          input.form-control#phone(type='tel', name='phone')
+        .radio
+          label
+            input#public(type='radio', name='visible', value='public')
+            span Public
+        .radio
+          label
+            input#private(type='radio', name='visible', value='private')
+            span Private
+        button.btn.btn-primary(type='submit') Submit
+    .col-xs-6
+
+block scripts
+
