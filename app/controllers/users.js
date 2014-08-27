@@ -60,3 +60,13 @@ exports.index = function(req, res){
     res.render('users/index', {users:users});
   });
 };
+
+exports.viewUser = function(req, res){
+  User.collection.findOne({email:req.params.email}, function(err, person){
+    if(!person.isVisible){
+      res.redirect('/users');
+    }else{
+      res.render('users/viewUser', {person:person});
+    }
+  });
+};

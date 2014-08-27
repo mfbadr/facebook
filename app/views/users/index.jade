@@ -4,6 +4,6 @@ block content
     .col-xs-6
       h2 Users with public profiles:
       each user in users
-        h4= user.email
+        h4: a(href='/users/#{user.email}')= user.email
 block scripts
 

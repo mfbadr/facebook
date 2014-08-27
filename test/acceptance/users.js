@@ -83,5 +83,27 @@ describe('users', function(){
       });
     });
   });
+  describe('get /users/:email', function(){
+    it('should show another users public profile', function(done){
+      request(app)
+      .get('/users/bill@aol.com')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('bill');
+        done();
+      });
+    });
+    it('should not show another users private profile', function(done){
+      request(app)
+      .get('/users/sue@aol.com')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users'); //where are we redirecting to?
+        done();
+      });
+    });
+  });
 });
 

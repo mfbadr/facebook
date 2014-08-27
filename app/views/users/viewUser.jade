@@ -1,0 +1,18 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-6
+      h1= person.email
+      h4= person.tagline
+      h2 Phone
+      h4= person.phone
+      h2 Twitter
+      h4: a(href='http://www.twitter.com/#{person.twitter}', target='_blank') #{person.twitter}
+      h2 Facebook
+      h4: a(href='http://#{person.facebook}', target='_blank') #{person.facebook}
+      h2 Visibility
+      h4= person.isVisible ? 'Public' : 'Private'
+      a.btn.btn-primary(href='/profile/edit') Edit Profile
+    .col-xs-6
+      img#profilepic.img-circle(src=person.photo)
+
