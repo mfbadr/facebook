@@ -50,3 +50,7 @@ exports.update = function(req, res){
     res.redirect('/profile');
   });
 };
+
+exports.show = function(req, res){
+  res.render('users/profile');
+};

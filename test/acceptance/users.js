@@ -56,5 +56,18 @@ describe('users', function(){
       });
     });
   });
+  describe('get /profile', function(){
+    it('should show the profile', function(done){
+      request(app)
+      .get('/profile')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('bob@aol.com');
+        expect(res.text).to.include('Phone');
+        done();
+      });
+    });
+  });
 });
 

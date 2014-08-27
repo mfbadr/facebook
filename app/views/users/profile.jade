@@ -1,0 +1,16 @@
+extends ../shared/template
+block content
+  h2 Login
+  .row
+    .col-xs-6
+      h1= user.email
+      h2 Phone
+      h4= user.phone
+      h2 Twitter
+      h4= user.twitter
+      h2 Facebook
+      h4= user.facebook
+    .col-cs-6
+      img.img-circle(src=user.photo)
+block scripts
+
