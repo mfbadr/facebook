@@ -39,7 +39,7 @@ User.update = function(body, user, cb){
   user.facebook = body.facebook;
   user.twitter = body.twitter;
   user.phone = body.phone;
-  user.isVisible = body.visible === 'public' ? true : false;
+  user.isVisible = body.visible === 'public';
   //user.visible = body.visible;
   User.collection.save(user, cb);
 };
