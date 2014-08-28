@@ -1,0 +1,9 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-6
+      h2 Inbox
+      each message in user.messages
+        h4= message.body
+block scripts
+
