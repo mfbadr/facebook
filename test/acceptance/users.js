@@ -12,7 +12,6 @@ var expect  = require('chai').expect,
 
 describe('users', function(){
   before(function(done){
-    console.log(env);
     request(app).get('/').end(done);
   });
 
