@@ -70,15 +70,18 @@ module.exports = User;
 
 function sendText(to, body, cb){
 // Twilio Credentials
-  var accountSid = 'ACfd20bd0f31adbed6b145541d420e7081',
-    authToken  = process.env.TWILIO,
-    client = require('twilio')(accountSid, authToken);
+  if(!to){return cb();}
+  var accountSid = process.env.TWSID,
+      authToken  = process.env.TWTOK,
+      from       = process.env.FROM,
+      client     = require('twilio')(accountSid, authToken);
+
 
 //require the Twilio module and create a REST client
 
   client.messages.create({
     to: to,
-    from: '+16156033945',
+    from: from,
     body: body
   },cb);
 }

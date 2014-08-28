@@ -70,5 +70,18 @@ describe('User', function(){
       });
     });
   });
+  describe('#send', function(){
+    it('should send a text message to a user', function(done){
+      User.findById('000000000000000000000001', function(err, sender){
+        User.findById('000000000000000000000002', function(err, receiver){
+          sender.send(receiver, {mtype:'text', message:'yo'}, function(err, response){
+            console.log(err);
+            expect(response.sid).to.be.ok;
+            done();
+          });
+        });
+      });
+    });
+  });
 });
 
