@@ -78,4 +78,6 @@ exports.message = function(req, res){
     });
   });
 };
-
+exports.inbox = function(req, res){
+  res.render('users/inbox');
+};

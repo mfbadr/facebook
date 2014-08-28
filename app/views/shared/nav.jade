@@ -11,6 +11,7 @@
     .collapse.navbar-collapse#bs-navbar-collapse
       ul.nav.navbar-nav.navbar-right
         if user
+          li: a(href='/inbox') Inbox
           li: a(href='/profile') My Profile
           li: a(href='/profile/edit') Edit Profile
           li: a(href='/users') Profile Index

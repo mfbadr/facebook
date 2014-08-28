@@ -140,5 +140,17 @@ describe('users', function(){
       });
     });
   });
+  describe(' get /inbox', function(done){
+    it('should show the inbox', function(done){
+      request(app)
+      .get('/inbox')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Inbox');
+        done();
+      });
+    });
+  });
 });
 
