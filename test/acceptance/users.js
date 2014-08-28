@@ -106,11 +106,22 @@ describe('users', function(){
     });
   });
   describe('post /message/:id', function(){
-    it('should send a user a message', function(done){
+    it('should send a user a text', function(done){
       request(app)
       .post('/message/000000000000000000000003')
       .set('cookie', cookie)
       .send('mtype=text&message=hello from your acceptance test')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/bill@aol.com');
+        done();
+      });
+    });
+    it('should send a user a email', function(done){
+      request(app)
+      .post('/message/000000000000000000000003')
+      .set('cookie', cookie)
+      .send('mtype=email&message=hello from your acceptance test')
       .end(function(err, res){
         expect(res.status).to.equal(302);
         expect(res.headers.location).to.equal('/users/bill@aol.com');

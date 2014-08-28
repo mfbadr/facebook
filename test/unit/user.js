@@ -75,9 +75,20 @@ describe('User', function(){
       User.findById('000000000000000000000001', function(err, sender){
         User.findById('000000000000000000000002', function(err, receiver){
           sender.send(receiver, {mtype:'text', message:'HELLO FROM YOUR LOYAL UNIT  TEST'}, function(err, response){
-            console.log(err);
-            console.log(response);
+            //console.log(err);
+            //console.log(response);
             expect(response.sid).to.be.ok;
+            done();
+          });
+        });
+      });
+    });
+    it('should send an email to a user', function(done){
+      User.findById('000000000000000000000001', function(err, sender){
+        User.findById('000000000000000000000002', function(err, receiver){
+          sender.send(receiver, {mtype:'email', message:'THIS IS AN EMAIL'}, function(err, response){
+            //console.log(err);
+            expect(response.id).to.be.ok;
             done();
           });
         });

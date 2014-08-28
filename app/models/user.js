@@ -60,6 +60,13 @@ User.prototype.send = function(receiver, obj, cb){
       sendText(receiver.phone, obj.message, cb);
       break;
     case 'email':
+      var data = {
+        from: this.email,
+        to: receiver.email,
+        subject: 'Message from ' + this.email,
+        text: obj.message
+      };
+      sendEmail(data, cb);
       break;
     case 'internal':
       break;
@@ -67,6 +74,14 @@ User.prototype.send = function(receiver, obj, cb){
 
 };
 module.exports = User;
+
+function sendEmail(data, cb){
+  var Mailgun = require('mailgun-js'),
+      domain  = process.env.MGDOMAIN,
+      apiKey  = process.env.MGKEY,
+      mailgun = new Mailgun({apiKey: apiKey, domain: domain});
+  mailgun.messages().send(data, cb);
+}
 
 function sendText(to, body, cb){
 // Twilio Credentials
