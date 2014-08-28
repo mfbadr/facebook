@@ -110,7 +110,7 @@ describe('users', function(){
       request(app)
       .post('/message/000000000000000000000003')
       .set('cookie', cookie)
-      .send('mtype=text&message=hello')
+      .send('mtype=text&message=hello from your acceptance test')
       .end(function(err, res){
         expect(res.status).to.equal(302);
         expect(res.headers.location).to.equal('/users/bill@aol.com');

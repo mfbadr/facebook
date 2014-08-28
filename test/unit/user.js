@@ -74,8 +74,9 @@ describe('User', function(){
     it('should send a text message to a user', function(done){
       User.findById('000000000000000000000001', function(err, sender){
         User.findById('000000000000000000000002', function(err, receiver){
-          sender.send(receiver, {mtype:'text', message:'yo'}, function(err, response){
+          sender.send(receiver, {mtype:'text', message:'HELLO FROM YOUR LOYAL UNIT  TEST'}, function(err, response){
             console.log(err);
+            console.log(response);
             expect(response.sid).to.be.ok;
             done();
           });
