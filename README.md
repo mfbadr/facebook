@@ -1,7 +1,7 @@
 ## name of project
 ### Code Badges
-build status icon
-coverage status icon
+[![Build Status](https://travis-ci.org/mfbadr/facebook.svg)](https://travis-ci.org/mfbadr/facebook)
+[![Coverage Status](https://coveralls.io/repos/mfbadr/facebook/badge.png)](https://coveralls.io/r/mfbadr/facebook)
 
 ### About
 write a description about your project
