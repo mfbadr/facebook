@@ -69,11 +69,33 @@ User.prototype.send = function(receiver, obj, cb){
       sendEmail(data, cb);
       break;
     case 'internal':
+      var internalData = {
+        from: this.email,
+        to: receiver._id,
+        date: new Date(),
+        body: obj.message,
+        isRead:false
+      };
+      sendInternal(internalData, cb);
       break;
   }
 
 };
 module.exports = User;
+
+function sendInternal(data, cb){
+  User.findById(data.to, function(err, receiver){
+    if(!receiver.messages){receiver.messages = [];}
+    receiver.messages.push(data);
+    User.collection.save(receiver, cb);
+  });
+}
+//sendInternal(data, cb){
+//find reciever by id
+//  receiver.messages.push(data)
+//  User.save(reciever, cb)
+//
+//}
 
 function sendEmail(data, cb){
   var Mailgun = require('mailgun-js'),
