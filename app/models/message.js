@@ -18,13 +18,12 @@ Object.defineProperty(Message, 'collection', {
 
 Message.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
-  Message.collection.findOne({_id:_id}, function(err, obj){
-    obj.isRead = true;
-    cb(err, _.create(Message.prototype, obj));
+  Message.collection.update({_id:_id}, {$set : {isRead:true}}, function(){
+    Message.collection.findOne({_id:_id}, function(err, obj){
+      cb(err, _.create(Message.prototype, obj));
+    });
   });
 };
-
-
 
 Message.all = function(cb){
   Message.collection.find().toArray(cb);

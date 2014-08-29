@@ -152,17 +152,17 @@ describe('users', function(){
       });
     });
   });
-  //describe(' get /inbox/:index', function(done){
-    //it('should show a message', function(done){
-      //request(app)
-      //.get('/inbox/0')
-      //.set('cookie', cookie)
-      //.end(function(err, res){
-        //expect(res.status).to.equal(200);
-        //expect(res.text).to.include('From');
-        //done();
-      //});
-    //});
-  //});
+  describe(' get /inbox/:index', function(done){
+    it('should show a message', function(done){
+      request(app)
+      .get('/inbox/a00000000000000000000002')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('From');
+        done();
+      });
+    });
+  });
 });
 

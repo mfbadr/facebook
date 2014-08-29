@@ -87,3 +87,10 @@ exports.inbox = function(req, res){
     res.render('users/inbox', {messages:messages, moment:moment});
   });
 };
+
+exports.showMessage = function(req, res){
+  Message.findById(req.params.id, function(err, message){
+    console.log(message);
+    res.render('users/viewMessage',{message:message, moment:moment});
+  });
+};

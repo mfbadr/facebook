@@ -14,7 +14,7 @@ block content
               tr
                 td: a(href='/users/#{message.from}')= message.from
                 td= moment(message.date).format('LL')
-                td= message.body.slice(0, 10)+'...'
+                td: a(href='/inbox/#{message._id}')=message.body.slice(0, 10)+'...'
 
 block scripts
 

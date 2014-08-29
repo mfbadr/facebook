@@ -1,0 +1,11 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-6
+      h2 From
+      h4= message.from
+      h2 Date
+      h4= moment(message.date).format('LL')
+      h2 Body
+      h4= message.body
+
