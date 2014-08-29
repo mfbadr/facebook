@@ -3,7 +3,6 @@
   "email" : "bob@aol.com",
   "isVisible": true,
   "phone": "15005550006",
-  "messages" : [],
   "password" : "$2a$10$XR.IQktUUujLBxed70GQn.jWY1wZ9ThM0Tar9wTqzkI4Uk1uP2Or2"
 }
 {
@@ -11,7 +10,6 @@
   "email" : "sue@aol.com",
   "password" : "$2a$10$sjPx9TkrEASeXzH6uuDCDO.n1Sj/H2A/bu/9hBFfm5fm3Z4LzrEPa",
   "phone": "15005550006",
-  "messages" : [],
   "isVisible": false
 }
 
@@ -20,6 +18,5 @@
   "email" : "bill@aol.com",
   "password" : "$2a$10$sjPx9TkrEASeXzH6uuDCDO.n1Sj/H2A/bu/9hBFfm5fm3Z4LzrEPa",
   "phone": "15005550006",
-  "messages" : [],
   "isVisible": true
 }

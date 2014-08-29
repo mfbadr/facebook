@@ -2,6 +2,7 @@
 
 var bcrypt = require('bcrypt'),
     _      = require('lodash'),
+    Message = require('./message'),
     Mongo  = require('mongodb');
 
 function User(){
@@ -72,9 +73,7 @@ User.prototype.send = function(receiver, obj, cb){
       var internalData = {
         from: this.email,
         to: receiver._id,
-        date: new Date(),
-        body: obj.message,
-        isRead:false
+        body: obj.message
       };
       sendInternal(internalData, cb);
       break;
@@ -84,18 +83,9 @@ User.prototype.send = function(receiver, obj, cb){
 module.exports = User;
 
 function sendInternal(data, cb){
-  User.findById(data.to, function(err, receiver){
-    if(!receiver.messages){receiver.messages = [];}
-    receiver.messages.push(data);
-    User.collection.save(receiver, cb);
-  });
+  var message = new Message(data);
+  Message.collection.save(message, cb);
 }
-//sendInternal(data, cb){
-//find reciever by id
-//  receiver.messages.push(data)
-//  User.save(reciever, cb)
-//
-//}
 
 function sendEmail(data, cb){
   var Mailgun = require('mailgun-js'),

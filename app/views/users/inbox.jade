@@ -3,7 +3,18 @@ block content
   .row
     .col-xs-6
       h2 Inbox
-      each message in user.messages
-        h4= message.body
+      table.table.table-striped
+        thead
+          th From
+          th Date
+          th Message
+        tbody
+          if messages.length > 0
+            each message in messages
+              tr
+                td: a(href='/users/#{message.from}')= message.from
+                td= moment(message.date).format('LL')
+                td= message.body.slice(0, 10)+'...'
+
 block scripts
 

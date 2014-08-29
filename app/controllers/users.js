@@ -1,6 +1,8 @@
 'use strict';
 
-var User = require('../models/user');
+var User    = require('../models/user'),
+    Message = require('../models/message'),
+    moment  = require('moment');
 
 exports.new = function(req, res){
   res.render('users/new');
@@ -78,6 +80,10 @@ exports.message = function(req, res){
     });
   });
 };
+
 exports.inbox = function(req, res){
-  res.render('users/inbox');
+  Message.collection.find({to:res.locals.user._id}).toArray(function(err, messages){
+    console.log(messages);
+    res.render('users/inbox', {messages:messages, moment:moment});
+  });
 };
