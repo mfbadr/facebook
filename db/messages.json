@@ -1,0 +1,24 @@
+{
+  "_id" : {"$oid":"a00000000000000000000001"},
+  "to" : {"$oid":"000000000000000000000002"},
+  "from" : "bob@email.com",
+  "isFound": false,
+  "due"  : {"$date":1583301600000},
+  "body" : "this is the first message"
+}
+{
+  "_id" : {"$oid":"a00000000000000000000002"},
+  "to" : {"$oid":"000000000000000000000001"},
+  "from" : "sue@email.com",
+  "isFound": false,
+  "due"  : {"$date":1584301600000},
+  "body" : "this is the second message"
+}
+{
+  "_id" : {"$oid":"a00000000000000000000003"},
+  "to" : {"$oid":"000000000000000000000002"},
+  "from" : "bob@email.com",
+  "isFound": false,
+  "due"  : {"$date":1563301600000},
+  "body" : "this is the third message"
+}
