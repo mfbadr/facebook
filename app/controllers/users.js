@@ -42,9 +42,11 @@ exports.authenticate = function(req, res){
     }
   });
 };
-
+//need undread count from here on out
 exports.edit = function(req, res){
-  res.render('users/edit');
+  Message.collection.count({to:res.locals.user._id, isRead:false}, function(err, count){
+    res.render('users/edit', {count:count});
+  });
 };
 
 exports.update = function(req, res){
@@ -54,19 +56,25 @@ exports.update = function(req, res){
 };
 
 exports.show = function(req, res){
-  res.render('users/profile');
+  Message.collection.count({to:res.locals.user._id, isRead:false}, function(err, count){
+    res.render('users/profile', {count:count});
+  });
 };
 
 exports.index = function(req, res){
   User.find({isVisible:true}, function(err, users){
-    res.render('users/index', {users:users});
+    Message.collection.count({to:res.locals.user._id, isRead:false}, function(err, count){
+      res.render('users/index', {users:users, count:count});
+    });
   });
 };
 
 exports.viewUser = function(req, res){
   User.find({email:req.params.email}, function(err, person){
     if(person[0].isVisible){
-      res.render('users/viewUser', {person:person[0]});
+      Message.collection.count({to:res.locals.user._id, isRead:false}, function(err, count){
+        res.render('users/viewUser', {person:person[0], count:count});
+      });
     }else{
       res.redirect('/users');
     }
@@ -83,14 +91,17 @@ exports.message = function(req, res){
 
 exports.inbox = function(req, res){
   Message.collection.find({to:res.locals.user._id}).toArray(function(err, messages){
-    console.log(messages);
-    res.render('users/inbox', {messages:messages, moment:moment});
+    Message.collection.count({to:res.locals.user._id, isRead:false}, function(err, count){
+      res.render('users/inbox', {messages:messages, moment:moment, count:count});
+    });
   });
 };
 
 exports.showMessage = function(req, res){
   Message.findById(req.params.id, function(err, message){
-    console.log(message);
-    res.render('users/viewMessage',{message:message, moment:moment});
+    //console.log(message);
+    Message.collection.count({to:res.locals.user._id, isRead:false}, function(err, count){
+      res.render('users/viewMessage',{message:message, moment:moment, count:count});
+    });
   });
 };

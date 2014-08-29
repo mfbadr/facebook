@@ -8,6 +8,7 @@ block content
           th From
           th Date
           th Message
+          th Read?
         tbody
           if messages.length > 0
             each message in messages
@@ -15,6 +16,7 @@ block content
                 td: a(href='/users/#{message.from}')= message.from
                 td= moment(message.date).format('LL')
                 td: a(href='/inbox/#{message._id}')=message.body.slice(0, 10)+'...'
+                td= message.isRead
 
 block scripts
 

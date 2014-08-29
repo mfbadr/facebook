@@ -12,6 +12,7 @@
       ul.nav.navbar-nav.navbar-right
         if user
           li: a(href='/inbox') Inbox
+          li(style="background-color: red")= count
           li: a(href='/profile') My Profile
           li: a(href='/profile/edit') Edit Profile
           li: a(href='/users') Profile Index
